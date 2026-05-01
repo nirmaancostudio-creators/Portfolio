@@ -1,20 +1,74 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Nirmaan & Co. — Portfolio Website
 
-# Run and deploy your AI Studio app
+A design and web studio portfolio for small businesses. Built with React, Vite, TypeScript, Tailwind CSS v4, and Framer Motion.
 
-This contains everything you need to run your app locally.
+## Stack
 
-View your app in AI Studio: https://ai.studio/apps/005ca9af-e483-42a3-91f3-6e6843b29672
+- **React 19** + **TypeScript**
+- **Vite 6** — build tool
+- **Tailwind CSS v4** — via `@tailwindcss/vite`, configured with `@theme` in `index.css`
+- **Framer Motion** (`motion/react`) — all animations and scroll parallax
+- **Lenis** — smooth scrolling (desktop only)
+- **React Router DOM v7** — for the `/corporate` deck viewer route
+
+## Project Structure
+
+```
+src/
+├── components/         # All page sections and UI components
+│   ├── primitives/     # Reusable atoms (SplitText, Marquee, MagneticButton, etc.)
+│   ├── Portfolio.tsx   # Main work showcase — Websites, Graphics, Corporates, Prototypes, Automation tabs
+│   ├── Navbar.tsx
+│   ├── Hero.tsx
+│   ├── Contact.tsx
+│   └── ...
+├── data/
+│   └── decks.ts        # Corporate presentation deck data
+├── pages/
+│   └── CorporatePage.tsx  # Full-screen slide viewer at /corporate?deck=ppt1|ppt3
+├── lib/
+│   └── easings.ts      # Custom easing curves
+└── App.tsx             # BrowserRouter + routes + Lenis setup
+
+public/
+├── works/
+│   ├── graphics/       # Social, Marketing, Branding, Print images
+│   └── corporate/      # PPT1 (8 slides) and PPT3 (20 slides)
+└── screensohts/        # Website preview screenshots
+```
 
 ## Run Locally
 
-**Prerequisites:**  Node.js
-
+**Prerequisites:** Node.js 18+
 
 1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+   ```bash
+   npm install
+   ```
+
+2. Start the dev server:
+   ```bash
+   npm run dev
+   ```
+   Opens at `http://localhost:3000`
+
+3. Type-check:
+   ```bash
+   npx tsc --noEmit
+   ```
+
+## Build & Deploy
+
+```bash
+npm run build      # outputs to dist/
+npm run preview    # serve the production build locally
+```
+
+Deployed on **Netlify**. The `netlify.toml` at the project root configures:
+- Build command: `npm run build`
+- Publish directory: `dist`
+- SPA redirect: all routes → `index.html` (required for React Router)
+
+## Contact
+
+**Email:** nirmaancostudio@gmail.com
