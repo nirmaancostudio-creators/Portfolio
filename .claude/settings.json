@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Read(//c/Users/Parth/.claude/skills/ui-ux-pro-max/**)",
+      "Bash(python skills/ui-ux-pro-max/scripts/search.py \"premium cinematic dark design studio agency portfolio\" --design-system -p \"Lumen Studio\")",
+      "Bash(python3 skills/ui-ux-pro-max/scripts/search.py \"premium cinematic dark design studio agency portfolio\" --design-system -p \"Lumen Studio\")",
+      "Bash(python \"C:\\\\Users\\\\Parth\\\\.claude\\\\skills\\\\ui-ux-pro-max\\\\scripts\\\\search.py\" \"premium cinematic dark design studio agency portfolio\" --design-system -p \"Lumen Studio\")",
+      "Bash(python \"C:\\\\Users\\\\Parth\\\\.claude\\\\skills\\\\ui-ux-pro-max\\\\scripts\\\\search.py\" \"dark cinematic animation parallax hero\" --domain style)",
+      "Bash(python \"C:\\\\Users\\\\Parth\\\\.claude\\\\skills\\\\ui-ux-pro-max\\\\scripts\\\\search.py\" \"animation scroll entrance timing\" --domain ux)",
+      "Bash(python \"C:\\\\Users\\\\Parth\\\\.claude\\\\skills\\\\ui-ux-pro-max\\\\scripts\\\\search.py\" \"elegant luxury serif display cinematic dark\" --domain typography)",
+      "mcp__magic__21st_magic_component_inspiration",
+      "Bash(python C:/Users/Parth/.claude/skills/ui-ux-pro-max/scripts/search.py \"premium agency studio cinematic dark 3d objects immersive hero\" --design-system -p \"LUMEN Studio\" -f markdown)",
+      "Bash(python C:/Users/Parth/.claude/skills/ui-ux-pro-max/scripts/search.py \"cinematic depth 3d floating objects performance animation\" --domain ux -n 5)"
+    ]
+  }
+}

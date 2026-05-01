@@ -1,0 +1,176 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Cabinet Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --font-sans: "General Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-serif: "Editorial New", Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --color-bg: #0B0B0D;
+  --color-bg-raised: #111114;
+  --color-ink: #F5F2EC;
+  --color-ink-dim: rgba(245, 242, 236, 0.6);
+  --color-ink-faint: rgba(245, 242, 236, 0.35);
+  --color-line: rgba(245, 242, 236, 0.08);
+  --color-line-strong: rgba(245, 242, 236, 0.16);
+  --color-accent: #B4B4FF;
+  --color-accent-dim: rgba(180, 180, 255, 0.5);
+  --color-accent-soft: rgba(180, 180, 255, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "ss01", "ss02", "cv01";
+  text-rendering: optimizeLegibility;
+  cursor: none;
+}
+
+@media (max-width: 768px) {
+  body { cursor: auto; }
+}
+
+/* ===== Typography utilities ===== */
+.text-display {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 0.88;
+  text-transform: none;
+}
+
+.text-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-ink-dim);
+}
+
+.text-meta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--color-ink-faint);
+}
+
+.text-editorial {
+  font-family: var(--font-serif);
+  font-style: italic;
+  letter-spacing: -0.01em;
+}
+
+.text-stroke {
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(245, 242, 236, 0.38);
+}
+
+.text-stroke-accent {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--color-accent);
+}
+
+/* Gradient-fill text */
+.text-gradient {
+  background: linear-gradient(135deg, var(--color-accent) 0%, rgba(245,242,236,0.9) 60%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ===== Selection ===== */
+::selection {
+  background: var(--color-accent);
+  color: var(--color-bg);
+}
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--color-bg); }
+::-webkit-scrollbar-thumb { background: rgba(245, 242, 236, 0.08); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-accent-dim); }
+
+/* ===== Mask-wipe reveal utility ===== */
+.mask-wipe {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 1.1s cubic-bezier(0.76, 0, 0.24, 1);
+}
+.mask-wipe.in-view {
+  clip-path: inset(0 0% 0 0);
+}
+
+/* ===== Noise overlay — DISABLED for performance ===== */
+/* SVG filter noise is extremely expensive — forces compositing on entire page.
+   The visual effect at 0.045 opacity was barely perceptible anyway. */
+.noise { display: none; }
+
+/* ===== Scroll hint tick (compositor-only) ===== */
+@keyframes scroll-tick {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(200%); }
+}
+.scroll-tick {
+  animation: scroll-tick 1.8s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* ===== Reduce-motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ===== Section wipe (used between major sections) ===== */
+.section-rule {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--color-line-strong), transparent);
+}
+
+/* ===== Compositor hints ===== */
+/* Sections below the fold skip rendering until they're near the viewport */
+main > section:not(:first-child) {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 800px;
+}
+
+/* ===== Marquee base ===== */
+.marquee-track {
+  display: inline-flex;
+  white-space: nowrap;
+}
+
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.marquee-scroll {
+  animation: marquee-scroll var(--marquee-duration, 40s) linear infinite;
+  will-change: transform;
+}
+
+.marquee-pause-on-hover:hover .marquee-scroll {
+  animation-play-state: paused;
+}
+
+/* ===== Hide cursor on interactive elements that trigger variants ===== */
+[data-cursor] { cursor: none; }
+
+/* ===== Thin border helper ===== */
+.border-line { border-color: var(--color-line); }
+.border-line-strong { border-color: var(--color-line-strong); }
